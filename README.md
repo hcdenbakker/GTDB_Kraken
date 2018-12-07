@@ -5,6 +5,7 @@ This page will contain links, notes and scripts for kraken databases me and Lee 
 
 ## Version 1
 Notes:
+- Based on GTDB Release 03-RS86 (19th August 2018)
 - Not the complete GTDB database, taxa without a genus designation have been omitted (10,994 out of 11042 taxa in this version)
 - Reference sequences have been selected ad hoc, without regard for the quality of the sequence. This will be dealt with in future versions  
 
