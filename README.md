@@ -1,7 +1,7 @@
 # GTDB_Kraken
 Kraken(2) database based on the GTDB project
 
-This page will contain links, notes and scripts for kraken databases me and Lee Katz produced based on the GTDB database (http://gtdb.ecogenomic.org/). The kraken database contains 1 genome per taxon recognized in the GTDB database. Given that the the taxonomy of the GTDB database is based on genomic data, we expect this database to result in better performance for taxonomy-based classifier algorithms.    
+This page will contain links, notes and scripts for kraken databases Lee Katz and I produced based on the GTDB database (http://gtdb.ecogenomic.org/). The kraken database contains 1 genome per taxon recognized in the GTDB database. Given that the the taxonomy of the GTDB database is based on genomic data, we expect this database to result in better performance for taxonomy-based classifier algorithms.    
 
 ## Version 1
 Notes:
