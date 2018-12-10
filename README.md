@@ -14,3 +14,32 @@ Notes:
 `gtdbk2_bacterial_v1.tar.gz md5sum: eda7855cb38a14b4222381ac5b27fe4b`
 
 https://drive.google.com/file/d/18E0W_ezNLAhxxZjjelQYwoLA_0oBm4Lo/view?usp=sharing
+
+## Building from source
+
+To download all fasta files and compile from source, you can run the provided script with the input file from the GTDB project.  Next, use the `--add-to-library` and `--build` functions in Kraken to format the database.  Example commands are below.
+
+### Requirements
+
+* Edirect
+* Perl
+* Kraken or Kraken2
+
+### Example commands for building from source
+
+    # Creates the directory library/gtdb and adds fasta files.
+    perl scripts/gtdbToTaxonomy.pl --infile data/gtdb.2018-12-10.tsv
+    # Format the database.
+    db=GTDB_Kraken
+    for i in library/gtdb/*.fna; do 
+      kraken-build --add-to-library $i --db $db
+    done
+    kraken-build --download-taxonomy --db $db 
+    kraken-build --build --db $db --threads 8
+
+### Cleanup (optional)
+
+You can optionally remove all intermediate fasta files and also run the clean utility in Kraken.
+
+    rm -rvf library/gtdb
+    kraken-build --clean $db
