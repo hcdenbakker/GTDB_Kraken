@@ -36,13 +36,14 @@ To download all fasta files and compile from source, you can run the provided sc
     for i in library/gtdb/*.fna; do 
       kraken-build --add-to-library $i --db $db
     done
+    mv -v taxonomy $db
     kraken-build --build --db $db --threads 8
 
 ### Cleanup (optional)
 
 You can optionally remove all intermediate fasta files and also run the clean utility in Kraken.
 
-    rm -rvf library/gtdb
+    rm -rvf library
     kraken-build --clean $db
 
 ## Authors
