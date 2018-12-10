@@ -14,6 +14,7 @@ grep g__Salmonella $wd/../data/gtdb.2018-12-10.tsv > $inputTsv || {
   exit 1
 }
 perl $wd/../scripts/gtdbToTaxonomy.pl --infile $inputTsv
+ls -lhS
 mv taxonomy library $tmpdir/
 
 # Build the database
@@ -21,7 +22,7 @@ db=$wd/GTDB_Kraken
 for i in $tmpdir/library/gtdb/*.fna; do
   kraken-build --add-to-library $i --db $db
 done
-mv -v taxonomy $db
+mv -v $tmpdir/taxonomy $db
 kraken-build --build --db $db --threads $NUMCPUS
 
 # TODO test against the database
