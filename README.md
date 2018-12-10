@@ -29,13 +29,13 @@ To download all fasta files and compile from source, you can run the provided sc
 ### Example commands for building from source
 
     # Creates the directory library/gtdb and adds fasta files.
+    # Also creates a taxonomy folder, compatible with Kraken.
     perl scripts/gtdbToTaxonomy.pl --infile data/gtdb.2018-12-10.tsv
     # Format the database.
     db=GTDB_Kraken
     for i in library/gtdb/*.fna; do 
       kraken-build --add-to-library $i --db $db
     done
-    kraken-build --download-taxonomy --db $db 
     kraken-build --build --db $db --threads 8
 
 ### Cleanup (optional)

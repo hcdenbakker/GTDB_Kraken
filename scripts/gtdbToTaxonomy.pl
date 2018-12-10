@@ -32,13 +32,14 @@ sub main{
   GetOptions($settings, qw(infile=s --sequence-dir=s help)) or die $!;
   die usage() if($$settings{help});
   $$settings{infile} ||= die "ERROR: need --infile";
+  $$settings{'sequence-dir'}//="library";
+
+  mkdir "taxonomy";
+  mkdir $$settings{'sequence-dir'};
+  mkdir $$settings{'sequence-dir'}."/gtdb";
 
   my $fastaIndex = fastaIndex($$settings{'sequence-dir'});
   logmsgBg "Loaded ".scalar(keys(%$fastaIndex))." fasta files into the index\n";
-
-  mkdir "taxonomy";
-  mkdir "library";
-  mkdir "library/gtdb";
 
   open(my $nodesFh, ">", "taxonomy/nodes.dmp") or die "ERROR writing to nodes.dmp";
   open(my $namesFh, ">", "taxonomy/names.dmp") or die "ERROR writing to names.dmp";
@@ -98,15 +99,15 @@ sub main{
 
     # Download the genome with the last taxid
     my $taxid = $taxon{$lineage[-1]}{taxid};
-    my $filename = "library/gtdb/$assemblyId.fna";
+    my $filename = $$settings{'sequence-dir'}."/gtdb/$assemblyId.fna";
     logmsgBg "  finding it ($assemblyId)...";
-    if(-e $filename){
+    if(-e $filename && (stat($filename))[7] > 0){
       logmsgLn "file present, not downloading again.";
       next;
     }
 
     # Copy or download the file
-    if($$fastaIndex{$assemblyId}){
+    if($$fastaIndex{$assemblyId} && (stat($filename))[7] > 0){
       logmsg "copying from $$fastaIndex{$assemblyId}...";
       #cp($$fastaIndex{$assemblyId}, "$filename.tmp") or die $!;
       link($$fastaIndex{$assemblyId}, "$filename.tmp") or die $!;
