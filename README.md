@@ -46,6 +46,10 @@ You can optionally remove all intermediate fasta files and also run the clean ut
     rm -rvf library
     kraken-build --clean $db
 
+## Known issues
+
+* Error 429 too many requests. NCBI is receiving too many general requests, but you can carve out a special place for yourself by getting an NCBI API key.  Log into your NCBI profile and copy your key.  Then, add it to your environment like so: `export NCBI_API_KEY=1fe2...` 
+
 ## Authors
 
 * Henk den Bakker @hcdenbakker
