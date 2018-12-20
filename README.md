@@ -15,6 +15,8 @@ Notes:
 
 https://drive.google.com/file/d/18E0W_ezNLAhxxZjjelQYwoLA_0oBm4Lo/view?usp=sharing
 
+Use `sh scripts/google_download.sh` to download the database from your command line. 
+
 ## Building from source
 
 To download all fasta files and compile from source, you can run the provided script with the input file from the GTDB project.  Next, use the `--add-to-library` and `--build` functions in Kraken to format the database.  Example commands are below.
